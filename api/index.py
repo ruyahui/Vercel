@@ -30,11 +30,21 @@ def youtube():
 	playlist,wave_file = get_playlist(url)
 	global audio_file
 	audio_file = wave_file
-	return render_template('index.html', files=[audio_file, os.listdir('/tmp')])
+	return render_template('index2.html', files=[audio_file, os.listdir('/tmp')])
 
 @app.route('/about')
 def about():
     return 'About'
+
+@app.route('/mp3')
+def mp3():
+    def generate():
+    	global audio_file
+        with open(audio_file, 'rb') as video:
+            data = video.read()
+            return data
+    return Response(generate())
+
 
 @app.route('/audio')
 def audio():
