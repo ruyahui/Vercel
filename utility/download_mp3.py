@@ -67,14 +67,14 @@ def xml2srt(text):
 
     return output
 
-def mp3_to_wave(filename):
+def mp3_to_wave_bk(filename): #for windows
 	output_file = filename.replace(".mp3",".wav")    
 	# convert mp3 to wav file	
 	print("mp32wav:", filename, output_file)
 	subprocess.call(['ffmpeg', '-i', filename, output_file])
 	print('mp3 to wave ok!')
 
-def mp3_to_wave_bk(filename):
+def mp3_to_wave(filename):
 	output_file = filename.replace(".mp3",".wav") 
 	print("mp32wav:", filename, output_file) 
 	sound = AudioSegment.from_mp3(filename)
@@ -89,8 +89,8 @@ def get_playlist(url):
 	source_folder = "/tmp/"
 	audio_file = youtube_download(url, source_folder)
 	audio_file = audio_file.replace(".mp3",".wav")
-	#if not os.path.isfile(audio_file):
-		#mp3_to_wave(audio_file)
+	if not os.path.isfile(audio_file):
+		mp3_to_wave(audio_file)
 	return [yt.title],os.listdir(source_folder)
 
 '''
