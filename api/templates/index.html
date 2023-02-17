@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<h1>The audio preload attribute</h1>
+
+<p>Click on the play button to play a sound:</p>
+    <audio controls preload="auto">
+        <source src="{{ url_for('audio') }}" type="audio/x-wav;codec=pcm">
+        Your browser does not support the audio element.
+    </audio>
+
+<p> Folder: {{ folder }}</p>
+<ul>
+{% for file in files %}
+  <li> {{ file }}</li>
+{% endfor %}
+</ul>
+</body>
+</html>
