@@ -6,6 +6,7 @@ from pytube import YouTube, Playlist
 import subprocess
 from bs4 import BeautifulSoup
 from pydub import AudioSegment
+from ffmpy import FFmpeg
 
 def youtube_download(url,source_folder):
 	yt = YouTube(url)
@@ -67,18 +68,16 @@ def xml2srt(text):
 
     return output
 
-def mp3_to_wave_bk(filename): #for windows
-	output_file = filename.replace(".mp3",".wav")    
-	# convert mp3 to wav file	
-	print("mp32wav:", filename, output_file)
-	subprocess.call(['ffmpeg', '-i', filename, output_file])
-	print('mp3 to wave ok!')
-
 def mp3_to_wave(filename):
 	output_file = filename.replace(".mp3",".wav") 
-	print("mp32wav:", filename, output_file) 
-	sound = AudioSegment.from_mp3(filename)
-	sound.export(output_file, format="wav")
+	print("mp32wav:", filename, output_file)
+	filter_cmd = '-f wav -ac 1 -ar 16000'
+	ff = FFmpeg(
+		inputs={
+			filename: None}, outputs={
+			output_file: filter_cmd})
+	print(ff.cmd)
+	ff.run()
 	print('mp3 to wave ok!')
 
 def get_playlist(url):
@@ -88,10 +87,10 @@ def get_playlist(url):
 	print("Title: ",yt.title)
 	source_folder = "/tmp/"
 	audio_file = youtube_download(url, source_folder)
-	audio_file = audio_file.replace(".mp3",".wav")
-	if not os.path.isfile(audio_file):
+	audio_wave_file = audio_file.replace(".mp3",".wav")
+	if not os.path.isfile(audio_wave_file):
 		mp3_to_wave(audio_file)
-	return [yt.title],os.listdir(source_folder)
+	return [yt.title],audio_wave_file
 
 '''
 url='https://www.youtube.com/playlist?list=PLOB7G19x6JpPcNiPj7llUNQPrtbbcpVVN'
