@@ -27,9 +27,9 @@ def genHeader(sampleRate, bitsPerSample, channels):
 @app.route('/youtube')
 def youtube():
 	url='https://www.youtube.com/playlist?list=PLOB7G19x6JpPcNiPj7llUNQPrtbbcpVVN'
-	#playlist,wave_file = get_playlist(url)
+	playlist,wave_file = get_playlist(url)
 	#global audio_file
-	audio_file = "youtube"
+	audio_file = playlist[0]
 	#audio_file = wave_file
 	return render_template('index.html', files=[audio_file])
 
