@@ -1,2 +1,27 @@
 git branch -M main
 git remote add origin https://github.com/ruyahui/Vercel.git
+
+
+git init                           //初始化仓库
+git add .(文件name)                //添加文件到本地 
+git commit -m “first commit”      //添加文件描述信息
+git remote add origin  远程仓库地址 //链接远程仓库 
+git pull origin main           // 把本地仓库的变化连接到远程仓库master                                     分支
+git push -u origin main        //把本地仓库的文件推送到远程仓库master 
+
+git pull origin main --allow-unrelated-histories
+git remote -v //检查远程仓库配置
+
+…or create a new repository on the command line
+echo "# vercel" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/ruyahui/vercel.git
+git push -u origin main
+
+…or push an existing repository from the command line
+git remote add origin https://github.com/ruyahui/vercel.git
+git branch -M main
+git push -u origin main
