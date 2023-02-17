@@ -26,8 +26,8 @@ def youtube_download(url,source_folder):
 	caption = yt.captions.get_by_language_code('a.en')
 	xml = caption.xml_captions  
 	srt_filename = filename.replace(".mp3",".srt")
-	#with open(srt_filename,'w+') as f1:
-	#	f1.write(xml2srt(xml))    # 儲存為 srt
+	with open(srt_filename,'w+') as f1:
+		f1.write(xml2srt(xml))    # 儲存為 srt
 	print(srt_filename, 'Caption ok!') 
 
 	return os.listdir(source_folder)
