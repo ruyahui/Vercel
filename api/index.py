@@ -93,10 +93,10 @@ def audio():
 
 @app.route('/')
 def index():
-	files=os.listdir("/tmp")
+	files=os.listdir('/tmp')
 	global audio_file
 	audio_file = "media/audio_tmp.wav"
-	return render_template('index.html', files=files)
+	return render_template('index.html', files=[files])
 
 audio_file = "media/audio_tmp.wav"     
 if __name__ == "__main__":
