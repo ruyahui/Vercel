@@ -21,6 +21,7 @@ def youtube_download(url,source_folder):
 	filename = source_folder + filename + ".mp3"
 	print('download from url...')
 	#yt.streams.filter().get_audio_only().download(filename=filename)
+	caption = yt.captions.get_by_language_code('a.en')
 	'''
 	print(filename, 'mp3 download ok!')
 	caption = yt.captions.get_by_language_code('a.en')
