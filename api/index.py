@@ -1,19 +1,11 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
 from flask import Flask, Response,render_template
-#import pyaudio
+from utility.download_mp3 import *
 import wave
 import os
 
 app = Flask(__name__)
-
-
-#FORMAT = pyaudio.paInt16
-#CHANNELS = 2
-#RATE = 44100
-#CHUNK = 1024
-#RECORD_SECONDS = 5
-
- 
-#audio1 = pyaudio.PyAudio()
 
 def genHeader(sampleRate, bitsPerSample, channels):
 	datasize = 2000*10**6
@@ -32,9 +24,13 @@ def genHeader(sampleRate, bitsPerSample, channels):
 	o += (datasize).to_bytes(4,'little')                                    # (4byte) Data size in bytes
 	return o
 
-@app.route('/hello')
-def hello():
-    return 'Hello, World!'
+@app.route('/youtube')
+def youtube():
+	url='https://www.youtube.com/playlist?list=PLOB7G19x6JpPcNiPj7llUNQPrtbbcpVVN'
+	playlist,wave_file = get_playlist(url)
+	global audio_file
+	audio_file = wave_file
+	return render_template('index.html', files=[audio_file])
 
 @app.route('/about')
 def about():
@@ -72,15 +68,16 @@ def audio():
 		bitsPerSample = 16
 		channels = 2
 		wav_header = genHeader(sampleRate, bitsPerSample, channels)
-
-		with wave.open("api/audio_tmp.wav", "rb") as wf:
+		global audio_file
+		with wave.open(audio_file, "rb") as wf:
 			params = wf.getparams()
 			nchannels, sampwidth, framerate, nframes = params[:4]
 			print(nchannels, sampwidth, framerate, nframes)
 			wav_header = genHeader(framerate, sampwidth*8, nchannels)
 			first_run =True
-			data = wav_header + wf.readframes(nframes)
+			data = wav_header + wf.readframes(nframes) # One batch transfer
 			'''
+			# Cut to many chunks to transfer
 			while True:
 				if first_run:
 					data = wav_header + wf.readframes(CHUNK)
@@ -90,17 +87,18 @@ def audio():
 				if data == b'':
 					break
 				yield(data)
-				'''
+			'''
 			return data
 	return Response(play_sound())
 
 @app.route('/')
 def index():
-	folder = "toeic"
-	files=os.listdir(folder)
-	return render_template('index.html', files=files, folder = folder)
+	files=os.listdir("media")
+	global audio_file
+	audio_file = "media/audio_tmp.wav"
+	return render_template('index.html', files=[audio_file])
 
-      
+audio_file = "media/audio_tmp.wav"     
 if __name__ == "__main__":
 	app.run(host='0.0.0.0', debug=True, threaded=True,port=5000)
 

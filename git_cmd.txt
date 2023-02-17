@@ -25,3 +25,6 @@ git push -u origin main
 git remote add origin https://github.com/ruyahui/vercel.git
 git branch -M main
 git push -u origin main
+
+
+pipreqs ./ --encoding=utf8 --force
