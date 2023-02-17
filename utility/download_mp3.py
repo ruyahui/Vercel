@@ -21,17 +21,16 @@ def youtube_download(url,source_folder):
 	filename = source_folder + filename + ".mp3"
 	print('download from url...')
 	#yt.streams.filter().get_audio_only().download(filename=filename)
-	caption = yt.captions.get_by_language_code('a.en')
-	'''
+
 	print(filename, 'mp3 download ok!')
 	caption = yt.captions.get_by_language_code('a.en')
 	xml = caption.xml_captions  
 	srt_filename = filename.replace(".mp3",".srt")
-	with open(srt_filename,'w') as f1:
+	with open(srt_filename,'w+') as f1:
 		f1.write(xml2srt(xml))    # 儲存為 srt
 	print(srt_filename, 'Caption ok!') 
-	'''
-	return caption
+
+	return 'Caption ok!'
 
 def xml2srt(text):
     soup = BeautifulSoup(text)                     # 使用 BeautifulSoup 轉換 xml
