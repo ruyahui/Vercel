@@ -29,7 +29,7 @@ def youtube_download(url,source_folder):
 		f1.write(xml2srt(xml))    # 儲存為 srt
 	print(srt_filename, 'Caption ok!') 
 
-	return os.listdir(source_folder)
+	return filename
 
 def xml2srt(text):
     soup = BeautifulSoup(text)                     # 使用 BeautifulSoup 轉換 xml
@@ -88,11 +88,10 @@ def get_playlist(url):
 	print("Title: ",yt.title)
 	source_folder = "/tmp/"
 	audio_file = youtube_download(url, source_folder)
-	#audio_file=[os.listdir("media")]
-	#audio_file = audio_file.replace(".mp3",".wav")
-	#if not os.path.isfile(audio_file):
-	#	mp3_to_wave(audio_file)
-	return [yt.title],audio_file
+	audio_file = audio_file.replace(".mp3",".wav")
+	if not os.path.isfile(audio_file):
+		mp3_to_wave(audio_file)
+	return [yt.title],os.listdir(source_folder)
 
 '''
 url='https://www.youtube.com/playlist?list=PLOB7G19x6JpPcNiPj7llUNQPrtbbcpVVN'
