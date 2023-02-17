@@ -93,7 +93,7 @@ def audio():
 
 @app.route('/')
 def index():
-	files=os.listdir("media")
+	files=os.listdir("/tmp")
 	global audio_file
 	audio_file = "media/audio_tmp.wav"
 	return render_template('index.html', files=files)
