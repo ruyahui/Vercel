@@ -20,14 +20,14 @@ def youtube_download(url,source_folder):
 	print("File: ",filename)
 	filename = source_folder + filename + ".mp3"
 	print('download from url...')
-	yt.streams.filter().get_audio_only().download(filename=filename)
+	#yt.streams.filter().get_audio_only().download(filename=filename)
 
 	print(filename, 'mp3 download ok!')
 	caption = yt.captions.get_by_language_code('a.en')
 	xml = caption.xml_captions  
 	srt_filename = filename.replace(".mp3",".srt")
-	with open(srt_filename,'w+') as f1:
-		f1.write(xml2srt(xml))    # 儲存為 srt
+	#with open(srt_filename,'w+') as f1:
+	#	f1.write(xml2srt(xml))    # 儲存為 srt
 	print(srt_filename, 'Caption ok!') 
 
 	return os.listdir(source_folder)
@@ -87,7 +87,7 @@ def get_playlist(url):
 	url = playlist[0]
 	yt = YouTube(url)
 	print("Title: ",yt.title)
-	source_folder = "tmp/"
+	source_folder = "/tmp/"
 	audio_file = youtube_download(url, source_folder)
 	#audio_file=[os.listdir("media")]
 	#audio_file = audio_file.replace(".mp3",".wav")
