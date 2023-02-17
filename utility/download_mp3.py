@@ -22,7 +22,7 @@ def youtube_download(url,source_folder):
 	print('download from url...')
 	#yt.streams.filter().get_audio_only().download(filename=filename)	
 	print(filename, 'mp3 download ok!')
-	caption = yt.captions.get_by_language_code('a.en')
+	#caption = yt.captions.get_by_language_code('a.en')
 	xml = caption.xml_captions  
 	srt_filename = filename.replace(".mp3",".srt")
 	with open(srt_filename,'w') as f1:
