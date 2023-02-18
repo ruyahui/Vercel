@@ -10,7 +10,7 @@ from pydub import AudioSegment
 
 def youtube_download(url,source_folder):
 	yt = YouTube(url)
-	print("Title: ",yt.title)
+	#print("Title: ",yt.title)
 	filename = list(yt.title)
 	irr_symbols= ["~","!","@","#","$","%","^","&","(",")","{","}","\\","/",":","*","?",'"',"<",">","|"]
 	for i in range(len(filename)-1):

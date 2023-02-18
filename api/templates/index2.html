@@ -15,6 +15,12 @@
         <source src="{{ url_for('mp3') }}" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
+    <audio controls>
+	<source src="https://s3-ap-northeast-1.amazonaws.com/dazedbear-assets/Bluebird.flac">
+	<source src="https://s3-ap-northeast-1.amazonaws.com/dazedbear-assets/Bluebird.wav" type="audio/wav">
+	<source src="https://s3-ap-northeast-1.amazonaws.com/dazedbear-assets/Bluebird.mp3" type="audio/mpeg">
+	遇到不支援的瀏覽器會出現這行字
+	</audio>
 
 <p> Folder: {{ folder }}</p>
 <ul>
