@@ -75,8 +75,8 @@ def mp3_to_wave(filename):
 	ff = FFmpeg(
 		inputs={
 			filename: None}, outputs={
-			output_file: filter_cmd})
-	print(ff.cmd)
+			output_file: None})
+	#print(ff.cmd)
 	ff.run()
 	print('mp3 to wave ok!')
 
