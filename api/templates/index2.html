@@ -7,7 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-<h1>Welcome to MeTube TOEIC English Mp3</h1>
+<h1>Welcome to MeTube TOEIC English Mp3 with Sofia</h1>
 
 <p>Click on the play button to play a sound:</p>
     <audio controls preload="auto">
@@ -15,12 +15,11 @@
         <source src="{{ url_for('mp3') }}" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
-    <audio controls>
-	<source src="https://s3-ap-northeast-1.amazonaws.com/dazedbear-assets/Bluebird.flac">
-	<source src="https://s3-ap-northeast-1.amazonaws.com/dazedbear-assets/Bluebird.wav" type="audio/wav">
-	<source src="https://s3-ap-northeast-1.amazonaws.com/dazedbear-assets/Bluebird.mp3" type="audio/mpeg">
-	遇到不支援的瀏覽器會出現這行字
-	</audio>
+    <audio controls preload="auto">
+        <!--<source src="{{ url_for('audio') }}" type="audio/x-wav;codec=pcm"> -->
+        <source src="http://docs.google.com/uc?export=open&id=1-TQkrhQers7zUJDgYBD9-2bR77SedGkE" type="audio/mpeg">
+
+    </audio>
 
 <p> Folder: {{ folder }}</p>
 <ul>
