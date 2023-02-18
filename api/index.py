@@ -29,7 +29,7 @@ def youtube():
 	url='https://www.youtube.com/playlist?list=PLOB7G19x6JpPcNiPj7llUNQPrtbbcpVVN'
 	playlist,wave_file = get_playlist(url)
 	global audio_file
-	audio_file = wave_file
+	#audio_file = wave_file
 	return render_template('index2.html', files=[audio_file,"Is file:"+str(os.path.isfile(audio_file)) ,os.listdir('/tmp')])
 
 @app.route('/about')
