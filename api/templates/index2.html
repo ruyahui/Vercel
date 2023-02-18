@@ -7,12 +7,12 @@
     <title>Document</title>
 </head>
 <body>
-<h1>Welcome to MeTube TOEIC English index2</h1>
+<h1>Welcome to MeTube TOEIC English Mp3</h1>
 
 <p>Click on the play button to play a sound:</p>
     <audio controls preload="auto">
-        <source src="{{ url_for('audio') }}" type="audio/x-wav;codec=pcm"> 
-        <!--<source src="{{ url_for('mp3') }}" type="audio/mpeg">-->
+        <!--<source src="{{ url_for('audio') }}" type="audio/x-wav;codec=pcm"> -->
+        <source src="{{ url_for('mp3') }}" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
 

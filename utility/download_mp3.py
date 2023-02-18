@@ -6,7 +6,7 @@ from pytube import YouTube, Playlist
 import subprocess
 from bs4 import BeautifulSoup
 from pydub import AudioSegment
-from ffmpy import FFmpeg
+#from ffmpy import FFmpeg
 
 def youtube_download(url,source_folder):
 	yt = YouTube(url)
@@ -67,7 +67,7 @@ def xml2srt(text):
                 pass
 
     return output
-
+'''
 def mp3_to_wave(filename):
 	output_file = filename.replace(".mp3",".wav") 
 	print("mp32wav:", filename, output_file)
@@ -79,7 +79,7 @@ def mp3_to_wave(filename):
 	#print(ff.cmd)
 	ff.run()
 	print('mp3 to wave ok!')
-
+'''
 def get_playlist(url):
 	playlist=Playlist(url)
 	url = playlist[0]
@@ -87,10 +87,10 @@ def get_playlist(url):
 	print("Title: ",yt.title)
 	source_folder = "/tmp/"
 	audio_file = youtube_download(url, source_folder)
-	audio_wave_file = audio_file.replace(".mp3",".wav")
-	if not os.path.isfile(audio_wave_file):
-		mp3_to_wave(audio_file)
-	return [yt.title],audio_wave_file
+	#audio_wave_file = audio_file.replace(".mp3",".wav")
+	#if not os.path.isfile(audio_wave_file):
+	#	mp3_to_wave(audio_file)
+	return [yt.title],audio_file
 
 '''
 url='https://www.youtube.com/playlist?list=PLOB7G19x6JpPcNiPj7llUNQPrtbbcpVVN'
