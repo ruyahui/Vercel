@@ -41,12 +41,12 @@ def mp3():
 	def generate():
 		global audio_file
 		with open(audio_file, 'rb') as video:
-			data = video.read()
-			'''
+			data = video.read(1024)
+			
 			while data:
 				yield data
 				data = video.read(1024)
-			'''
+			
 			return data
 	return Response(generate())
 
