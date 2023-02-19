@@ -84,8 +84,8 @@ def get_playlist(url):
 	audio_file = youtube_download(url, source_folder)
 	audio_wave_file = audio_file.replace(".mp3",".wav")
 	if not os.path.isfile(audio_wave_file):
-		mp3_to_wave(audio_file)
-	return [yt.title],audio_file
+		mp3_to_wave(audio_file)	
+	return [yt.title],audio_wave_file
 
 '''
 url='https://www.youtube.com/playlist?list=PLOB7G19x6JpPcNiPj7llUNQPrtbbcpVVN'
