@@ -108,12 +108,13 @@ def audio():
 
 @app.route('/')
 def index():
-	files=os.listdir('/tmp')
 	global audio_file
+	files=os.listdir('/tmp')
+	files.appepen(str(os.path.isfile("/tmp/test.mp3")))
 	audio_file = "media/audio_tmp.wav"
 	if os.path.isfile("/tmp/test.mp3"):
 		audio_file = "/tmp/test.mp3"
-	return render_template('index2.html', str(os.path.isfile("/tmp/test.mp3"),files=[files])
+	return render_template('index2.html', files=[files])
 
 audio_file = "media/audio_tmp.wav"     
 if __name__ == "__main__":
