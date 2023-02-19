@@ -111,7 +111,9 @@ def index():
 	files=os.listdir('/tmp')
 	global audio_file
 	audio_file = "media/audio_tmp.wav"
-	return render_template('index.html', files=[files])
+	if os.path.isfile("/tmp/test.mp3"):
+		audio_file = "/tmp/test.mp3"
+	return render_template('index2.html', files=[files])
 
 audio_file = "media/audio_tmp.wav"     
 if __name__ == "__main__":
