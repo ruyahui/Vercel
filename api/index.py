@@ -113,7 +113,7 @@ def index():
 	audio_file = "media/audio_tmp.wav"
 	if os.path.isfile("/tmp/test.mp3"):
 		audio_file = "/tmp/test.mp3"
-	return render_template('index2.html', files=[files])
+	return render_template('index2.html', str(os.path.isfile("/tmp/test.mp3"),files=[files])
 
 audio_file = "media/audio_tmp.wav"     
 if __name__ == "__main__":
