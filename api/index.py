@@ -110,7 +110,7 @@ def audio():
 def index():
 	global audio_file
 	files=os.listdir('/tmp')
-	#files.appepen(str(os.path.isfile("/tmp/test.mp3")))
+	files.append(str(os.path.isfile("/tmp/test.mp3")))
 	audio_file = "media/audio_tmp.wav"
 	if os.path.isfile("/tmp/test.mp3"):
 		audio_file = "/tmp/test.mp3"
